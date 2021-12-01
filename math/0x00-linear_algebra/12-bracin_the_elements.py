@@ -6,8 +6,8 @@ This module contains a simple function
 
 def np_elementwise(mat1, mat2):
     """ performs element-wise addition, subtraction, mult and division"""
-    add = mat1 + mat2
-    sub = mat1 - mat2
-    mul = mat1 * mat2
-    div = mat1 / mat2
-    return (add, sub, mul, div)
+    madd = mat1 + mat2
+    msub = mat1 - mat2
+    mmul = mat1 * mat2
+    mdiv = mat1 / mat2
+    return (madd, msub, mmul, mdiv)
