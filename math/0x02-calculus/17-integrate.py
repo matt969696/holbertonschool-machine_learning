@@ -12,7 +12,12 @@ def poly_integral(poly, C=0):
         return None
     if not isinstance(C, int):
         return None
-    integ = [C] + [poly[i] / (i + 1) for i in range(len(poly))]
+    integ = [C]
+    for i in range(len(poly)):
+        new = poly[i] / (i + 1)
+        if new.is_integer():
+            new = int(new)
+        integ.append(new)
     while integ[-1] == 0 and len(integ) > 1:
         integ.pop()
     return integ
