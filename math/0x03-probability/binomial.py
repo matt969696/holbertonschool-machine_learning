@@ -86,6 +86,7 @@ class Binomial:
         """Calculates the value of the PDF for a given x-value"""
         if not isinstance(k, (int, float)) or k < 0:
             return 0
+        k = int(k)
         res = fact(self.n) / (fact(k) * fact(self.n-k)) *\
             self.p ** k * (1 - self.p) ** (self.n - k)
         return res
