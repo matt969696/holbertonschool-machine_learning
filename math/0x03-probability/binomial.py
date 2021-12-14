@@ -27,7 +27,7 @@ class Binomial:
         """
         self.data = data
         if data is None:
-            self.n = int(n)
+            self.n = round(n)
             self.p = float(p)
         else:
             mean = sum(self.data) / len(self.data)
