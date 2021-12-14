@@ -42,7 +42,7 @@ class Poisson:
         else:
             if not isinstance(value, list):
                 raise TypeError("data must be a list")
-            if len(value) <= 1:
+            if len(value) < 2:
                 raise ValueError("data must contain multiple values")
         self.__data = value
 
@@ -54,7 +54,7 @@ class Poisson:
     @lambtha.setter
     def lambtha(self, value):
         """Setter for lambtha attribute of Poisson object"""
-        if not isinstance(value, (int, float)) or value < 0:
+        if not isinstance(value, (int, float)) or value <= 0:
             raise ValueError("lambtha must be a positive value")
         else:
             self.__lambtha = float(value)
