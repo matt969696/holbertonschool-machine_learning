@@ -81,7 +81,7 @@ class Normal:
     @stddev.setter
     def stddev(self, value):
         """Setter for stddev attribute of Normal object"""
-        if not isinstance(value, (int, float)) or value < 0:
+        if not isinstance(value, (int, float)) or value <= 0:
             raise ValueError("stddev must be a positive value")
         else:
             self.__stddev = float(value)
