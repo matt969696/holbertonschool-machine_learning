@@ -25,7 +25,7 @@ class Poisson:
         """
         self.data = data
         if data is None:
-            self.lambtha = lambtha
+            self.lambtha = float(lambtha)
         else:
             self.lambtha = float(sum(self.data) / len(self.data))
 
