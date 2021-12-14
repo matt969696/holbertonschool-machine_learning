@@ -64,7 +64,7 @@ class Binomial:
     @n.setter
     def n(self, value):
         """Setter for n attribute of Binomial object"""
-        if not isinstance(value, (int, float)) or value < 0:
+        if not isinstance(value, (int, float)) or value <= 0:
             raise ValueError("n must be a positive value")
         else:
             self.__n = int(round(value))
@@ -77,7 +77,7 @@ class Binomial:
     @p.setter
     def p(self, value):
         """Setter for stddev attribute of Normal object"""
-        if not isinstance(value, (int, float)) or value < 0 or value > 1:
+        if not isinstance(value, (int, float)) or value <= 0 or value >= 1:
             raise ValueError("p must be greater than 0 and less than 1")
         else:
             self.__p = float(value)
