@@ -95,6 +95,7 @@ class Binomial:
         """Calculates the value of the CDF for a given x-value"""
         if not isinstance(k, (int, float)) or k < 0:
             return 0
+        k = int(k)
         res = 0
         for i in range(k + 1):
             res += self.pmf(i)
