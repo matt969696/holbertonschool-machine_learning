@@ -4,6 +4,7 @@ NeuralNetwork Module
 Contains NN class :  multiple neurons performing binary classification
 """
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def sig(x):
