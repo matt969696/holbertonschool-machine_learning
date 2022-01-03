@@ -17,9 +17,9 @@ def softmax(x):
     return np.exp(x)
 
 
-def tanh(x):
+def tanha(x):
     """Tanh function"""
-    return (np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x))
+    return np.tanh(x)
 
 
 class DeepNeuralNetwork:
@@ -47,7 +47,7 @@ class DeepNeuralNetwork:
             raise TypeError("layers must be a list of positive integers")
         if min(layers) < 1:
             raise TypeError("layers must be a list of positive integers")
-        if activation not in ('sig', 'tanh'):
+        if activation not in ['sig', 'tanh']:
             raise ValueError("activation must be 'sig' or 'tanh'")
         self.__activation = activation
         self.__L = len(layers)
@@ -99,9 +99,9 @@ class DeepNeuralNetwork:
             self.__cache["A" + str(self.L)] = tmp
         else:
             for i in range(self.L - 1):
-                tmp = tanh(np.matmul(self.weights["W" + str(i + 1)],
-                                     self.cache["A" + str(i)]) +
-                           self.weights["b" + str(i + 1)])
+                tmp = tanha(np.matmul(self.weights["W" + str(i + 1)],
+                                      self.cache["A" + str(i)]) +
+                            self.weights["b" + str(i + 1)])
                 self.__cache["A" + str(i + 1)] = tmp
             tmp = softmax(np.matmul(self.weights["W" + str(self.L)],
                                     self.cache["A" + str(self.L - 1)]) +
