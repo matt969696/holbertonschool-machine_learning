@@ -91,24 +91,24 @@ class DeepNeuralNetwork:
                                     self.cache["A" + str(i)]) +
                           self.weights["b" + str(i + 1)])
                 self.__cache["A" + str(i + 1)] = tmp
-                tmp = softmax(np.matmul(self.weights["W" + str(self.L)],
-                                        self.cache["A" + str(self.L - 1)]) +
-                              self.weights["b" + str(self.L)])
-                sum = np.sum(tmp, axis=0)
-                tmp = tmp / sum
-                self.__cache["A" + str(self.L)] = tmp
+            tmp = softmax(np.matmul(self.weights["W" + str(self.L)],
+                                    self.cache["A" + str(self.L - 1)]) +
+                          self.weights["b" + str(self.L)])
+            sum = np.sum(tmp, axis=0)
+            tmp = tmp / sum
+            self.__cache["A" + str(self.L)] = tmp
         else:
             for i in range(self.L - 1):
                 tmp = tanh(np.matmul(self.weights["W" + str(i + 1)],
                                      self.cache["A" + str(i)]) +
                            self.weights["b" + str(i + 1)])
                 self.__cache["A" + str(i + 1)] = tmp
-                tmp = softmax(np.matmul(self.weights["W" + str(self.L)],
-                                        self.cache["A" + str(self.L - 1)]) +
-                              self.weights["b" + str(self.L)])
-                sum = np.sum(tmp, axis=0)
-                tmp = tmp / sum
-                self.__cache["A" + str(self.L)] = tmp
+            tmp = softmax(np.matmul(self.weights["W" + str(self.L)],
+                                    self.cache["A" + str(self.L - 1)]) +
+                          self.weights["b" + str(self.L)])
+            sum = np.sum(tmp, axis=0)
+            tmp = tmp / sum
+            self.__cache["A" + str(self.L)] = tmp
         return self.cache["A" + str(self.L)], self.cache
 
     def cost(self, Y, A):
