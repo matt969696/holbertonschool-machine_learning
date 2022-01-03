@@ -4,7 +4,6 @@ Neuron Module
 Contains Neuron class :  single neuron performing binary classification
 """
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def sig(x):
