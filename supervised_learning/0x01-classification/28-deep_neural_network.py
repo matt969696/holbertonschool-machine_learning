@@ -120,8 +120,11 @@ class DeepNeuralNetwork:
         """Evaluates the NN’s predictions"""
         ret1, _ = self.forward_prop(X)
         ret2 = self.cost(Y, ret1)
-        ret3 = np.rint(np.nextafter(ret1, ret1+1)).astype(int)
-        return ret3, ret2
+        hot = np.argmax(ret1, axis=0)
+        nbcl = Y.shape[0]
+        enc = np.eye(nbcl)[hot]
+        ret3 = enc.T
+        return ret3.astype(int), ret2
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """Calculates one pass of gradient descent on the NN"""
