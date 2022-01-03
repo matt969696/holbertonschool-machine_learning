@@ -166,7 +166,10 @@ class DeepNeuralNetwork:
     @staticmethod
     def load(filename):
         """Loads a pickled DeepNeuralNetwork object"""
-        with open(filename, 'rb') as inp:
-            ret = pick.load(inp)
-            inp.close()
-        return ret
+        try:
+            with open(filename, 'rb') as inp:
+                ret = pick.load(inp)
+                inp.close()
+            return ret
+        except Exception:
+            return None
