@@ -20,9 +20,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
         loss = tf.get_collection("loss")[0]
         train_op = tf.get_collection('train_op')[0]
         m = X_train.shape[0]
-        nbbatch = m // batch_size
-        if nbbatch == 0:
-            nbbatch = 1
+        nbbatch = m // batch_size + 1
 
         for i in range(epochs + 1):
             costt = loss.eval({x: X_train,
@@ -43,7 +41,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
             rand_x, rand_y = shuffle_data(X_train, Y_train)
             for j in range(nbbatch):
                 start = batch_size * j
-                end = batch_size * (j + 1)
+                end = min(m, batch_size * (j + 1))
                 Xb = rand_x[start:end]
                 Yb = rand_y[start:end]
                 sess.run(train_op, {x: Xb, y: Yb})
