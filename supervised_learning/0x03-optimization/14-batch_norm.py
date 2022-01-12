@@ -9,7 +9,7 @@ import tensorflow.compat.v1 as tf
 def create_batch_norm_layer(prev, n, activation):
     """creates a batch normalization layer
     for a neural network in tensorflow"""
-    """winit = tf.keras.initializers.VarianceScaling(mode='fan_avg')
+    winit = tf.keras.initializers.VarianceScaling(mode='fan_avg')
     baselayer = tf.keras.layers.Dense(n, kernel_initializer=winit)
     mu, sig = tf.nn.moments(baselayer(prev), axes=[0])
     gamma = tf.Variable(tf.ones([n]), trainable=True)
@@ -17,14 +17,4 @@ def create_batch_norm_layer(prev, n, activation):
     epsilon = 1e-8
     layer = tf.nn.batch_normalization(baselayer(prev), mu,
                                       sig, beta, gamma, epsilon)
-    return activation(layer)"""
-
-    k = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    base = tf.layers.Dense(n, kernel_initializer=k)
-    mean, var = tf.nn.moments(base(prev), axes=[0])
-    gamma = tf.Variable(tf.ones([n]), trainable=True)
-    beta = tf.Variable(tf.zeros([n]), trainable=True)
-    epsilon = 1e-8
-    batch_norm = tf.nn.batch_normalization(base(prev), mean, var,
-                                           beta, gamma, epsilon)
-    return activation(batch_norm)
+    return activation(layer)
