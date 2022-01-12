@@ -52,4 +52,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
                           "\t\tCost: {}\n".format(costs) +
                           "\t\tAccuracy: {}".format(accus))
 
-        return saver.save(sess, save_path)
+        saver = tf.train.Saver()
+        save_path = saver.save(sess, save_path)
+
+    return save_path
