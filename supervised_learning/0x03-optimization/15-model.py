@@ -14,10 +14,10 @@ def forward_prop(prev, layers, activations, epsilon):
         winit = tf.keras.initializers.VarianceScaling(mode='fan_avg')
         baselayer = tf.keras.layers.Dense(layers[i],
                                           kernel_initializer=winit)
-        mu, sig = tf.nn.moments(baselayer(prev), axes=[0])
+        mu, sig = tf.nn.moments(baselayer(res), axes=[0])
         gamma = tf.Variable(tf.ones([layers[i]]), trainable=True)
         beta = tf.Variable(tf.zeros([layers[i]]), trainable=True)
-        layer = tf.nn.batch_normalization(baselayer(prev), mu,
+        layer = tf.nn.batch_normalization(baselayer(res), mu,
                                           sig, beta, gamma, epsilon)
         res = activations[i](layer)
 
@@ -70,6 +70,7 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
         sess.run(init)
         m = X_train.shape[0]
         nbbatch = m // batch_size + 1
+        saver = tf.train.Saver()
 
         for i in range(epochs + 1):
             costt = loss.eval({x: X_train,
@@ -101,7 +102,6 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
                           "\t\tCost: {}\n".format(costs) +
                           "\t\tAccuracy: {}".format(accus))
             sess.run(tf.assign(global_step, global_step + 1))
-        saver = tf.train.Saver()
         save_path = saver.save(sess, save_path)
 
     return save_path
